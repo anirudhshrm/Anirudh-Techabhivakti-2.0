@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Expense Tracker</title>
+  <style>
+   
+input[type="text"], input[type="number"] {
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 8px 15px;
+      cursor: pointer;
+    }
+    #expenseHistory {
+      margin-top: 20px;
+    }
+    body {
+    font-family: Arial, sans-serif;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    /* background-image: url("https://i.pinimg.com/originals/04/99/dd/0499dd060c8d81cb3f118cc8f564a20c.jpg"); */
+    margin: 0;
+    padding: 0;
+    background-color: #f9dbbd;
+    background-image: url("https://i.pinimg.com/originals/16/be/65/16be650d5b71fbee20aa8d1e30d0be3c.png");
+}
+
+header {
+    background-color:#450920;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    background-image: linear-gradient(to bottom right, #7b0633, #dad7cd);
+    font-family: fantasy;
+}
+
+.container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    background-color: #eae0d5;
+    box-shadow: 10px #a53860;
+    border:1.5px solid #a53860;
+    border-radius:25px;
+}
+
+
+h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+button {
+    background-color:#450920;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    background-color:#a53860;
+}
+#logout-button{
+    margin-top:5px;
+}
+#button1
+{ 
+    background-color: #f9dbbd; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+a{
+    margin-right:100px;
+    color:whitesmoke;
+}
+
+footer{
+    text-align:right;
+    font-size:smaller;
+    
+}
+a:link {
+  color: #a53860;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color:#a53860;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #a53860;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: #a53860;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="header">YOUR PERSONAL FINANCE MANAGER</h1>
+          <a id="logo" href="./index.html">Home</a>
+          <a href="./login page.html">Login</a>
+          <!-- <a href="file:///D:/workspace/fee%20project/sign%20up%20page.html" target="_blank">SIGN UP</a> -->
+  
+          <a href="./contact us.html">Contact us</a>
+          <a href="./manage expenses.html" target="_blank">Manage</a>
+    </header>
+  <div>
+    <div class="container">
+        
+      <div class="balance">
+    <h2>Your Balance: <span id="balance">1000</span></h2></div><br>
+    <div class="expense-form">
+    <h2>Add Expense</h2><br>
+    <h5>Expense Description:</h5>
+    <input type="text" id="expenseDesc" placeholder="Expense Description"><br>
+    <h5>Expense Amount:</h5>
+    <input type="number" id="expenseAmount" placeholder="Expense Amount"><br>
+    <button onclick="addExpense()">Add Expense</button>
+  </div>
+
+  <div id="expenseHistory">
+    <h3>Expense History</h3>
+    <ul id="expensesList">
+      <!-- Expense items will be listed here -->
+    </ul>
+  </div></div>
+
+  <script>
+    let balance = 1000; // Initial balance
+    const expenses = []; // Array to store expenses
+
+    // Function to add an expense
+    function addExpense() {
+      const description = document.getElementById('expenseDesc').value;
+      const amount = parseFloat(document.getElementById('expenseAmount').value);
+
+      if (description && !isNaN(amount) && amount > 0) {
+        expenses.push({ description, amount });
+        balance -= amount; // Deducting the expense from the balance
+        updateBalance();
+        displayExpenses();
+      } else {
+        alert('Please enter valid expense details.');
+      }
+    }
+
+    // Function to update balance display
+    function updateBalance() {
+      document.getElementById('balance').textContent = $${balance};
+    }
+
+    // Function to display expenses in the list
+    function displayExpenses() {
+      const expensesList = document.getElementById('expensesList');
+      expensesList.innerHTML = ''; // Clear the list
+
+      expenses.forEach(expense => {
+        const li = document.createElement('li');
+        li.textContent = ${expense.description}: $${expense.amount};
+        expensesList.appendChild(li);
+      });
+    }
+
+    // Initial display
+    updateBalance();
+    displayExpenses();
+  </script>
+  <footer>
+    Made using HTML CSS Javascript
+    &#169;Personal Finance Manager  Inc. or its affiliates;
+</footer>
+</body>
+</html>
